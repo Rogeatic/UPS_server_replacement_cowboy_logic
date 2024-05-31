@@ -1,35 +1,23 @@
-%%%-------------------------------------------------------------------
-%% @doc mylib top level supervisor.
-%% @end
-%%%-------------------------------------------------------------------
+%% Feel free to use, reuse and abuse the code in this file.
 
+%% @private
 -module(mylib_sup).
-
 -behaviour(supervisor).
 
+%% API.
 -export([start_link/0]).
 
+%% supervisor.
 -export([init/1]).
 
--define(SERVER, ?MODULE).
+%% API.
 
+-spec start_link() -> {ok, pid()}.
 start_link() ->
-    supervisor:start_link({local, ?SERVER}, ?MODULE, []).
+	supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
-%% sup_flags() = #{strategy => strategy(),         % optional
-%%                 intensity => non_neg_integer(), % optional
-%%                 period => pos_integer()}        % optional
-%% child_spec() = #{id => child_id(),       % mandatory
-%%                  start => mfargs(),      % mandatory
-%%                  restart => restart(),   % optional
-%%                  shutdown => shutdown(), % optional
-%%                  type => worker(),       % optional
-%%                  modules => modules()}   % optional
+%% supervisor.
+
 init([]) ->
-    SupFlags = #{strategy => one_for_all,
-                 intensity => 0,
-                 period => 1},
-    ChildSpecs = [],
-    {ok, {SupFlags, ChildSpecs}}.
-
-%% internal functions
+	Procs = [],
+	{ok, {{one_for_one, 10, 10}, Procs}}.

@@ -1,18 +1,25 @@
-%%%-------------------------------------------------------------------
-%% @doc mylib public API
-%% @end
-%%%-------------------------------------------------------------------
+%% Feel free to use, reuse and abuse the code in this file.
 
+%% @private
 -module(mylib_app).
-
 -behaviour(application).
 
--export([start/2, stop/1]).
+%% API.
+-export([start/2]).
+-export([stop/1]).
 
-start(_StartType, _StartArgs) ->
-    mylib_sup:start_link().
+%% API.
+
+start(_Type, _Args) ->
+	Dispatch = cowboy_router:compile([
+		{'_', [
+			{"/", cowboy_logic, []}
+		]}
+	]),
+	{ok, _} = cowboy:start_clear(http, [{port, 8080}], #{
+		env => #{dispatch => Dispatch}
+	}),
+	hello_world_sup:start_link().
 
 stop(_State) ->
-    ok.
-
-%% internal functions
+	ok = cowboy:stop_listener(http).
