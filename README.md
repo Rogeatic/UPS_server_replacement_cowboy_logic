@@ -1,1 +1,9 @@
-# UPS_server_replacement_cowboy_logic
+hello
+=====
+
+An OTP application
+
+Build
+-----
+
+    $ rebar3 compile

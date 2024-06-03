@@ -1,11 +1,12 @@
-{application, mylib,
+{application, hello,
  [{description, "An OTP application"},
   {vsn, "0.1.0"},
   {registered, []},
-  {mod, {mylib_app, []}},
+  {mod, {hello_app, []}},
   {applications,
    [kernel,
-    stdlib
+    stdlib,
+    cowboy
    ]},
   {env,[]},
   {modules, []},
