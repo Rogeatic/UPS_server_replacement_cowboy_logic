@@ -16,7 +16,7 @@ start(_Type, _Args) ->
             ]}
         ]),
 
-        PrivDir = code:priv_dir('UPS_server_replacement_cowboy_logic'),
+        PrivDir = code:priv_dir(db_access),
         %tls stands for transport layer security
             {ok,_} = cowboy:start_tls(https_listener, [
                               {port, 443},
