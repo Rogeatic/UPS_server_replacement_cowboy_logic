@@ -1,0 +1,10 @@
+{application,hello,
+             [{description,"An OTP application"},
+              {vsn,"0.1.0"},
+              {registered,[]},
+              {mod,{hello_app,[]}},
+              {applications,[kernel,stdlib,cowboy]},
+              {env,[]},
+              {modules,[default_page_h,hello_app,hello_sup]},
+              {licenses,["Apache-2.0"]},
+              {links,[]}]}.
